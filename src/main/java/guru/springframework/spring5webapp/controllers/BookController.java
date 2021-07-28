@@ -20,7 +20,7 @@ public class BookController {
         //Assign the books to model.
         model.addAttribute("books", bookRepository.findAll());
 
-        //Tells the framework to apply the view "books".
+        //Look in templates/books/ for list template.
         return "books/list";
     }
 }
