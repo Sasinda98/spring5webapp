@@ -14,6 +14,9 @@ public class Book {
     private String title;
     private String isbn;
 
+    @ManyToOne
+    private Publisher publisher;
+
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
@@ -58,6 +61,14 @@ public class Book {
         this.authors = authors;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
     //We want to make sure when equals is called, the comparison happens between the id property we've explicitly set.
     @Override
     public boolean equals(Object o) {
@@ -72,13 +83,13 @@ public class Book {
         return Objects.hash(id);
     }
 
-    //For debugging and logging purposes.
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
+                ", publisher=" + publisher +
                 ", authors=" + authors +
                 '}';
     }
